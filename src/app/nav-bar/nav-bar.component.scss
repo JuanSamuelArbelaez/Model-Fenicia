@@ -1,0 +1,35 @@
+@import "../../styles";
+
+nav {
+    background-color: #fff;
+    color: $color1;
+    padding: 10px 20px;
+    width: 100%;
+    margin: 0;
+    div {
+        width: 99%;
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: fit-content;
+        }
+    }
+    .center{
+        justify-content: flex-start;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+    }
+}
+.nav-div{
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    border-bottom-style: dashed;
+    border-bottom-width: 2px;
+    border-bottom-color: $color1;
+}

@@ -1,0 +1,83 @@
+@import "../../styles";
+
+main 
+{
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 2px;
+  align-items: center;
+  flex-direction: column;
+}
+
+section 
+{
+  transform-style: preserve-3d;
+  position: relative;
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+}
+
+section h1
+{
+  text-align: center;
+  font-size: 4rem;
+  font-family: sans-serif;
+}
+
+.no-parallax 
+{
+  z-index: 999;
+}
+
+.home-section{
+    background: linear-gradient(to bottom,  rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 1) 10%, rgba(53, 37, 86, 1) 40%, rgba(53, 37, 86, 1) calc(100% - 20px), rgba(255, 255, 255, 1) calc(100% - 20px), rgb(255, 255, 255) 100%);
+}
+
+.about-us-section{
+    background: linear-gradient(to bottom,  rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 20px,rgba(58, 19, 24, 1) 20px, rgba(58, 19, 24, 1) calc(100% - 20px),  rgba(255, 255, 255, 1) calc(100% - 20px), rgb(255, 255, 255) 100%);
+}
+
+
+.parallax::after 
+{
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateZ(-1px) scale(1.4);
+  background-size: 100%;
+  z-index: -1;
+}
+
+.bg::after 
+{
+  background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("../../assets/main-page-image.jpg");
+  background-size: cover;
+}
+
+.movie-grid{
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  grid-row-gap: 4rem;
+}
+
+@media screen and (min-width: 768px) 
+{
+  section h1 
+  {
+    font-size: 8rem;
+  }
+  
+  .parallax h1 
+  {
+    font-size: 4rem;
+  }
+}
