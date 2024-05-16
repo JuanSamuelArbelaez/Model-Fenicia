@@ -32,23 +32,31 @@ p {
     max-width: 50px;
 }
 
+.btn-big {
+    font-size: 18px;
+    padding: 10px 24px;
+}
+
 .btn {
     font-size: 12px;
+    padding: 8px 20px;
+}
+
+.btn, .btn-big {
     text-align: center;
     font-weight: 450;
     margin: 8px;
     z-index: 4;
     height: auto;
     width: auto;
-    padding: 8px 20px;
     border: 2px solid transparent;
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 
-.btn:hover {
-    transform: scale(1.1);
+.btn:hover, .btn-big:hover {
+    transform: scale(1.15);
 }
 
 .btn-dark1 {
@@ -159,4 +167,34 @@ h2, .home-caption{
 	color: #fff;
 	margin: 0 0 10px;
 	text-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+}
+
+
+
+.formSection {
+    padding: 3px;
+    margin: 3px;
+    min-width: 400px;
+    display:flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    small, input {
+        margin: 2px;
+    }
+    input {
+        border-radius: calc(1em);
+        padding: calc(0.5em + 2px);
+        border-style: solid;
+    }
+    .input-dark1 {
+        border-color: $color1;
+    }
+    .input-dark2 {
+        border-color: $color3;
+    }
+}
+
+.errorMsg{
+    color: $color4;
 }

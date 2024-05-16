@@ -1,1 +1,33 @@
-<p>register works!</p>
+<navigation-bar></navigation-bar>
+<form class="regForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="formSection">
+        <input class="input-dark1" id="mail" type="email" placeholder="E-Mail" formControlName="email" required>
+        <small class="errorMsg" *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.dirty">Email is required.</small>
+        <small class="errorMsg" *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
+    </div>
+    
+    <div class="formSection">
+        <input class="input-dark1" id="nickname" type="nickname" placeholder="Nickname" registerForm="nickname" formControlName="nickname" required>
+        <small class="errorMsg"  *ngIf="registerForm.get('nickname')?.errors?.['required'] && registerForm.get('nickname')?.dirty">Nickname is required.</small>
+    </div>
+  
+    <div class="formSection">
+        <input class="input-dark1" id="pswd1" type="password" placeholder="Password" formControlName="password" required>
+        <small class="errorMsg" *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.dirty">Password is required.</small>
+        <small class="errorMsg" *ngIf="registerForm.get('password')?.value?.length < 8 && registerForm.get('password')?.dirty">Password must be at least 8 characters long.</small>
+    </div>
+    
+    <div class="formSection">
+        <input class="input-dark1" id="pswd2" type="password" placeholder="Password Confirmation" formControlName="passwordConfirm" required>
+        <small class="errorMsg" *ngIf="!isPasswordMatch() && registerForm.get('passwordConfirm')?.dirty">Password confirmation does not match.</small>
+        <small class="errorMsg" *ngIf="registerForm.get('passwordConfirm')?.errors?.['required'] && registerForm.get('passwordConfirm')?.dirty">Password confirmation is required.</small>
+    </div>      
+
+    <div>
+        <button type="button" class="btn-big btn-dark1" onclick="location.href='/register'">Register</button>
+    </div>
+
+    <div>
+        <p>Already have an account? <a href="/login">Login Here!</a></p>
+    </div>
+</form>
