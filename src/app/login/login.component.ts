@@ -22,7 +22,8 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (!this.loginForm.valid){
-      alert('Error')
+      alert('Please enter a valid email address and valid password.');
+      return;
     }
   }
 }

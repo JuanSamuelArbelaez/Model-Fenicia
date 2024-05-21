@@ -1,30 +1,40 @@
 <navigation-bar></navigation-bar>
 <main>
-    <div  class="movie-grid">
-        <movie-home-title [info]="movies"></movie-home-title>
+  <section class="parallax bg"></section>
+  <section id="about" class="no-parallax home-section">
+    <h2 class="home-header">About Model Fenicia</h2>
+    <p class="home-caption">
+      At Model Fenicia, we are dedicated to becoming your trusted partner on the journey to mastering your movie data analytics. Our cutting-edge tools and innovative solutions are designed to provide you with actionable insights, driving your business success.
+    </p>
+    <p class="home-caption">
+      Discover the power of precise data management and analytics tailored for the movie industry. Explore our comprehensive plans and let us handle the heavy data lifting, so you can focus on what you do best.
+    </p>
+    <button routerLink="/register" class="btn btn-dark2">Join Us Today</button>
+  </section>
+  <section id="subscriptions" class="no-parallax about-us-section">
+    <h2 class="home-header">Subscription Plans</h2>
+    <p class="home-caption">
+      Model Fenicia offers a range of subscription plans crafted to meet your specific needs, ensuring top-notch service quality and competitive pricing.
+    </p>
+    <p class="home-caption">
+      Choose from our selection of tailored plans and elevate your movie data analytics experience. Currently, we have [1:"Premium"] plans available, each designed to provide you with the best tools and support.
+    </p>
+    <p class="home-caption">
+      With our ["Premium"] plan, you can see the most popular movies. Take a peek!
+    </p>
+    <div class="movie-grid">
+      <movie-home-title *ngFor="let movie of movieList" [info]="movie"></movie-home-title>
     </div>
-    <section class="parallax bg"></section>
-    <section id="about" class="no-parallax home-section">
-        <h2 class="home-header">Model Fenicia</h2>
-        <p class="home-caption">
-            In Model Fenicia, we are committed to being your partner
-            on your journey to mastering your movies' data.
-        </p>
-        <p class="home-caption">
-            Let us show you your movie buisness' newfavorite data tool! Explore our plans, and let us do the data-lifting.
-        </p>
-        <button href="/register" class="btn btn-dark2">Register Now</button>
-    </section>
-    <section id="subscriptions" class="no-parallax about-us-section">
-        <h2 class="home-header">Our Subscriptions</h2>
-        <p class="home-caption">
-            In Model Fenicia, we have a variety of plans designed specifically
-            to satisfy your expectations, both in our services quality and
-            pricing.
-        </p>
-        <p class="home-caption">
-            At the time, we have [0] availalble plans for you!
-        </p>
-        <button href="/register" class="btn btn-dark1">Enroll!</button>
-    </section>
+    <button routerLink="/register" class="btn btn-dark1">Enroll Now</button>
+  </section>
+  <section id="contact-us" class="no-parallax home-section">
+    <h2 class="home-header">Contact Us</h2>
+    <p class="home-caption">
+      Have questions or need more information? Our team is here to help. Get in touch with us to learn more about how Model Fenicia can transform your movie data management.
+    </p>
+    <p class="home-caption">
+      Reach out to us through our contact form or via email at support&#64;modelfenicia.com. We look forward to hearing from you and assisting with your data needs.
+    </p>
+    <button routerLink="/contact" class="btn btn-dark2">Contact Us</button>
+  </section>
 </main>

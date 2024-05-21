@@ -4,10 +4,17 @@ nav {
     background-color: #fff;
     color: $color1;
     padding: 10px 20px;
-    width: 100%;
+    min-width: 99vw;
     margin: 0;
-    div {
-        width: 99%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+    .right {
+        justify-content: flex-end;
+        flex-direction: row;
+        display: flex;
+        align-items:end;
         ul {
             list-style-type: none;
             margin: 0;
@@ -16,7 +23,7 @@ nav {
             width: fit-content;
         }
     }
-    .center{
+    .left{
         justify-content: flex-start;
         flex-direction: row;
         display: flex;

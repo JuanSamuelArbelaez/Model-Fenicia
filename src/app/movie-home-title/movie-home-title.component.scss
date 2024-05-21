@@ -1,7 +1,44 @@
 @import "../../styles";
 
-.movie-title {
-    border-style: solid;
-    border-radius: 10;
-    border-color: $color1;
+.movie-title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .title-section {
+    margin-bottom: 8px;
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+
+  .details-section {
+    .overview {
+      font-size: 1rem;
+      margin: 8px 0;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .date,
+    .language {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 4px 0;
+    }
+  }
 }

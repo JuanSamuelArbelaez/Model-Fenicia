@@ -1,6 +1,10 @@
-<div class="movie-title">
-    <div>{{ info.Title }}</div>
-    <div>{{ info.Overview }}</div>
-    <div>{{ info.ReleaseDate }}</div>
-    <div>{{ info.OriginalLanguage }}</div>
+<div class="movie-title-container">
+  <div class="title-section">
+    <p class="title">{{ info.Title }}</p>
+  </div>
+  <div class="details-section">
+    <p class="overview">{{ info.Overview }}</p>
+    <p class="date">Release Date: {{ info.ReleaseDate }}</p>
+    <p class="language">Language: {{ info.OriginalLanguage }}</p>
+  </div>
 </div>

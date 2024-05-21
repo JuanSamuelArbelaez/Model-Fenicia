@@ -1,0 +1,12 @@
+<profile-nav-bar></profile-nav-bar>
+<main>
+    <section>
+        <h2>Wellcome back, {{ nickname }}!</h2>
+    </section>
+    <section>
+        <h2></h2>
+        <div class="movie-grid">
+            <movie-home-title *ngFor="let movie of movieList" [info]="movie"></movie-home-title>
+        </div>
+    </section>
+</main>

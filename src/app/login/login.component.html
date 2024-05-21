@@ -1,21 +1,20 @@
 <navigation-bar></navigation-bar>
-<form class="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="formSection">
-        <input class="input-dark2" id="mail" type="email" placeholder="E-Mail" formControlName="email" required>
-        <small class="errorMsg" *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.dirty">Email is required.</small>
-        <small class="errorMsg" *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
-    </div>
-  
-    <div class="formSection">
-        <input class="input-dark2" id="pswd1" type="password" placeholder="Password" formControlName="password" required>
-        <small class="errorMsg" *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.dirty">Password is required.</small>
-    </div>
+<div class = login-container>
+    <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="formSection">
+            <input class="input-dark2" id="mail" type="email" placeholder="E-Mail" formControlName="email" required>
+            <small class="errorMsg" *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.dirty">Email is required.</small>
+            <small class="errorMsg" *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
+        </div>
     
-    <div>
-        <button type="button" class="btn-big btn-dark2" onclick="location.href='/login'">Log In</button>
-    </div>
-
-    <div>
-        <p>Don't have an account? <a href="/register">Register Here!</a></p>
-    </div>
-</form>
+        <div class="formSection">
+            <input class="input-dark2" id="pswd1" type="password" placeholder="Password" formControlName="password" required>
+            <small class="errorMsg" *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.dirty">Password is required.</small>
+        </div>
+        
+        <div class="centerSection">
+            <button type="button" class="btn-big btn-dark2" onclick="location.href='/login'">Log In</button>
+            <p>Don't have an account? <a href="/register">Register Here!</a></p>
+        </div>
+    </form>
+</div>
