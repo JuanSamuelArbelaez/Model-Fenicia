@@ -5,7 +5,6 @@ import { MovieInfo, SubscriptionDisplay } from '../../models/models';
 import { MovieServices } from '../../services/movie-service';
 import { CommonModule } from '@angular/common';
 import { SubscriptionComponent } from '../subscription/subscription.component';
-import Swiper from 'swiper';
 
 
 @Component({
