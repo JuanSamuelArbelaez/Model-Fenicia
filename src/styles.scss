@@ -238,3 +238,52 @@ small {
     display: flex;
     flex-direction: column;
 }
+
+
+.plans-grid {
+    display: column;
+    gap: 16px;
+    padding: 16px;
+    width: 60vw;
+    color: #000;
+}
+
+.plans-grid > movie-home-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel {
+    position: relative;
+    width: 60vw;
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    pointer-events: all;
+}

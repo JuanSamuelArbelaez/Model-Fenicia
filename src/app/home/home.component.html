@@ -1,6 +1,5 @@
 <navigation-bar></navigation-bar>
 <main>
-  <section class="parallax bg"></section>
   <section id="about" class="no-parallax home-section">
     <h2 class="home-header">About Model Fenicia</h2>
     <p class="home-caption">
@@ -9,7 +8,7 @@
     <p class="home-caption">
       Discover the power of precise data management and analytics tailored for the movie industry. Explore our comprehensive plans and let us handle the heavy data lifting, so you can focus on what you do best.
     </p>
-    <button routerLink="/register" class="btn btn-dark2">Join Us Today</button>
+    <button onclick="location.href='/register'"  class="btn-big btn-dark2">Join Us Today</button>
   </section>
   <section id="subscriptions" class="no-parallax about-us-section">
     <h2 class="home-header">Subscription Plans</h2>
@@ -17,15 +16,26 @@
       Model Fenicia offers a range of subscription plans crafted to meet your specific needs, ensuring top-notch service quality and competitive pricing.
     </p>
     <p class="home-caption">
-      Choose from our selection of tailored plans and elevate your movie data analytics experience. Currently, we have [1:"Premium"] plans available, each designed to provide you with the best tools and support.
+      Choose from our selection of tailored plans and elevate your movie data analytics experience. We desaign each of our subscription plans to provide you with the best tools and support. Currently, we have {{ subscriptions.length }} plans available.
     </p>
+    <div class="carousel">
+      <div class="carousel-inner" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+        <div class="carousel-item" *ngFor="let subscription of subscriptions">
+          <app-subscription [subscription]="subscription"></app-subscription>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-control-prev" (click)="prev()">&#10094;</button>
+        <button class="carousel-control-next" (click)="next()">&#10095;</button>
+      </div>
+    </div>
     <p class="home-caption">
-      With our ["Premium"] plan, you can see the most popular movies. Take a peek!
+      With our plans, you can see the most popular movies. Take a peek!
     </p>
     <div class="movie-grid">
       <movie-home-title *ngFor="let movie of movieList" [info]="movie"></movie-home-title>
     </div>
-    <button routerLink="/register" class="btn btn-dark1">Enroll Now</button>
+    <button onclick="location.href='/register'" class="btn-big btn-dark1">Enroll Now</button>
   </section>
   <section id="contact-us" class="no-parallax home-section">
     <h2 class="home-header">Contact Us</h2>
@@ -35,6 +45,5 @@
     <p class="home-caption">
       Reach out to us through our contact form or via email at support&#64;modelfenicia.com. We look forward to hearing from you and assisting with your data needs.
     </p>
-    <button routerLink="/contact" class="btn btn-dark2">Contact Us</button>
   </section>
 </main>

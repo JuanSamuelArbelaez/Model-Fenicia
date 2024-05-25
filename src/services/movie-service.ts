@@ -17,7 +17,7 @@ export class MovieServices {
       this.http.request<models.MovieInfo[]>("get", url)
         .subscribe({
           next: (response) => {resolve(response)},
-          error: (error) => {alert(error)}})
+          error: (error) => {console.log(error)}})
     ));
   }
 }

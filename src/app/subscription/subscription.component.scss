@@ -1,0 +1,35 @@
+@import "../../styles";
+
+.subscription-card {
+    color: #000;
+    flex-direction: row;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    height: 200px;
+    h3 {
+        margin-top: 0;
+    }
+    p {
+        margin: 4px 0;
+    }
+}
+
+.subscription-column {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    .desc {
+        overflow-y: auto;
+        max-height: 80px;
+        text-align: justify;
+        text-wrap: wrap;
+    }
+}
+  

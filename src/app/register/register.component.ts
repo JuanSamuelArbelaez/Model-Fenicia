@@ -44,7 +44,6 @@ export class RegisterComponent {
         }
       )
       .catch((error) => {
-        alert(error);
         console.log(error);
       });
     }

@@ -17,4 +17,10 @@ export interface MovieInfo {
     Overview: string;
     ReleaseDate: string;
     OriginalLanguage: string;
-  }
+}
+
+export interface SubscriptionDisplay {
+    plan: string;
+    price: number;
+    description: string;
+}

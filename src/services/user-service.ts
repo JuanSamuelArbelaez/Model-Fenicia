@@ -17,7 +17,7 @@ export class UserServices {
       this.http.request<models.UserCredentials>("post", url, { body: loginData })
         .subscribe({
           next: (response) => {resolve(response)},
-          error: (error) => {alert(error)}})
+          error: (error) => {console.log(error)}})
     ));
   }
 
@@ -27,7 +27,7 @@ export class UserServices {
       this.http.request<models.UserCredentials>("post", url, {body: registroData})
         .subscribe({
           next: (response) => {resolve(response)},
-          error: (error) =>{alert(error)}})
+          error: (error) =>{console.log(error)}})
     });
   }
 
@@ -37,7 +37,7 @@ export class UserServices {
       this.http.request<models.UserCredentials>("put", url)
         .subscribe({
           next: (response) => {resolve(response)},
-          error: (error) =>{alert(error.error.message)}})
+          error: (error) =>{console.log(error.error.message)}})
     });
   }
 }

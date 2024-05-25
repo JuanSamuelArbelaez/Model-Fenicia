@@ -62,6 +62,6 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
-  nickname: string = "";
+  nickname: string = "JhonDoe33";
   movieList: MovieInfo[] = [];
 }

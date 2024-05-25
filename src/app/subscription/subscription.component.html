@@ -1,0 +1,11 @@
+<div class="subscription-card">
+    <div class="subscription-column text-column">
+        <h3>{{ subscription.plan }}</h3>
+        <p class="desc">{{ subscription.description }}</p>
+        <p>Price: {{ subscription.price | currency }}</p>
+    </div>
+    <div class="subscription-column">
+        <button type="button" class="btn btn-dark2" onclick="location.href='/login'">Get!</button>
+    </div>
+</div>
+  
