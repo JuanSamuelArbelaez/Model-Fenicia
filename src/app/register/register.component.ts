@@ -26,7 +26,8 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
-    if (!this.registerForm.valid){
+    if (this.registerForm.errors) {
+      console.log(this.registerForm)
       alert('The registration form is not valid. Please try again.')
       return;
     }

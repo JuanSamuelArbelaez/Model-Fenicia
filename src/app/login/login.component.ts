@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators  } from '@angular/forms';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   loginForm: FormGroup;
 
   constructor(private router: Router,private formBuilder: FormBuilder, private userServices: UserServices, private authService: TokenService) {
@@ -22,6 +22,12 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, ]],
     });
+  }
+  ngOnInit(): void {
+    if (this.authService.isLogged()){
+      alert("Redirecting to dashboard...");
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   async onSubmit() {
