@@ -1,12 +1,36 @@
 <profile-nav-bar></profile-nav-bar>
 <main>
     <section>
-        <h3>Wellcome back, {{ nickname }}!</h3>
+        <h3>Welcome back, {{ userInfo.Nickname }}!</h3>
     </section>
+
     <section>
-        <h2></h2>
-        <div class="movie-grid">
+        <h3>Most Viewed Movies</h3>
+        <div *ngIf="movieList.length > 0; else noMovies" class="movie-grid">
             <movie-home-title *ngFor="let movie of movieList" [info]="movie"></movie-home-title>
+        </div>
+        <ng-template #noMovies>
+            <p>No movies to display.</p>
+        </ng-template>
+    </section>
+
+    <section>
+        <h3>Your Current Subscription</h3>
+        <div *ngIf="currentSubscription; else noSubscription">
+            <app-subscription [subscription]="currentSubscription" (requestCancelSubscription)="cancelCurrentSubscription($event)"></app-subscription>
+        </div>
+        <ng-template #noSubscription>
+            <p>You currently do not have a subscription. Please choose one from the options below.</p>
+        </ng-template>
+    </section>
+
+    <section>
+        <h3>Available Subscriptions</h3>
+        <div class="subscription-grid">
+            <app-subscription *ngFor="let subscription of filterSubscriptions()"
+            [subscription]="subscription"
+            (requestNewSubscription)="getNewSubscription($event)"
+            (requestCancelSubscription)="cancelCurrentSubscription($event)"></app-subscription>
         </div>
     </section>
 </main>

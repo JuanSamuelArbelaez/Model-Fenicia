@@ -1,20 +1,37 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SubscriptionDisplay } from '../../models/models';
-import { FormsModule } from '@angular/forms';
+import { SubscriptionInfo } from '../../models/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subscription',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './subscription.component.html',
   styleUrls: ['./subscription.component.scss']
 })
 export class SubscriptionComponent {
-  @Input() subscription: SubscriptionDisplay = {
-    plan: "Plan Name",
-    price: 25000,
-    description: "description"
+  @Input() subscription: SubscriptionInfo = new SubscriptionInfo("Plan Name", 25000, "description");
+  @Output() requestNewSubscription = new EventEmitter<SubscriptionInfo>();
+  @Output() requestCancelSubscription = new EventEmitter<SubscriptionInfo>();
+
+  constructor(private router: Router) {}
+
+  cancelSubscription() {
+    this.subscription.isInfoOnly = true;
+    this.requestCancelSubscription.emit(this.subscription);
+  }
+
+  getSubscription() {
+    const currentRoute = this.router.url;
+    if (currentRoute === '/home') {
+      this.router.navigate(['/login']);
+    } else if (currentRoute === '/dashboard') {
+      this.subscription.isInfoOnly = false;
+      this.requestNewSubscription.emit(this.subscription);
+    }
   }
 }
+
+
 

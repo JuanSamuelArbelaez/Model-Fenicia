@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { MovieHomeTitleComponent } from '../movie-home-title/movie-home-title.component';
-import { MovieInfo, SubscriptionDisplay } from '../../models/models';
+import { MovieInfo, SubscriptionInfo } from '../../models/models';
 import { MovieServices } from '../../services/movie-service';
 import { CommonModule } from '@angular/common';
 import { SubscriptionComponent } from '../subscription/subscription.component';
+import { SubscriptionService } from '../../services/subscription-service';
 
 
 @Component({
@@ -15,37 +16,22 @@ import { SubscriptionComponent } from '../subscription/subscription.component';
     MovieHomeTitleComponent,
     MovieHomeTitleComponent,
     CommonModule,
-    SubscriptionComponent,
+    SubscriptionComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
 
-  constructor(private movieServices: MovieServices) { }
+  constructor(private movieServices: MovieServices, private subscriptionService: SubscriptionService) { }
   
   ngOnInit(): void {
     this.loadMostViewed(this.movieList, 2);
+    this.subscriptions = this.subscriptionService.getAvailableSubscriptions();
   }
   currentIndex = 0;
   movieList: MovieInfo[] = [];
-  subscriptions: SubscriptionDisplay[] = [
-    {
-      plan: 'Basic',
-      price: 9.99,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus, neque quis vulputate placerat, tortor eros fermentum lectus, non elementum neque neque in sapien. Nulla volutpat pellentesque arcu eu sagittis. Duis cursus dui at rhoncus aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris erat metus, cursus et leo quis, porta tristique massa. Cras rhoncus tellus ut lectus accumsan, id luctus tortor interdum. Sed enim arcu, venenatis ac nunc nec, elementum pellentesque nisl. Donec non vehicula dui, in facilisis libero. Aliquam sed porta neque, quis pellentesque eros. Donec tempor odio magna, a convallis enim gravida non. Sed nec ex ante. Integer vel sem diam.'
-    },
-    {
-      plan: 'Premium',
-      price: 19.99,
-      description: 'Premium plan with all features.'
-    },
-    {
-      plan: 'Enterprise',
-      price: 49.99,
-      description: 'Enterprise plan for large businesses.'
-    }
-  ];
+  subscriptions: SubscriptionInfo[] = [];
 
   private async loadMostViewed(movieList: MovieInfo[], cant: number) {
     await this.movieServices.getMostViewed(cant)

@@ -5,7 +5,7 @@
         <p>Price: {{ subscription.price | currency }}</p>
     </div>
     <div class="subscription-column">
-        <button type="button" class="btn btn-dark2" onclick="location.href='/login'">Get!</button>
+        <button *ngIf="subscription.isInfoOnly" type="button" class="btn btn-dark2" (click)='getSubscription()'>Add</button>
+        <button *ngIf="!subscription.isInfoOnly" type="button" class="btn btn-dark1" (click)='cancelSubscription()'>Cancel</button>
     </div>
 </div>
-  

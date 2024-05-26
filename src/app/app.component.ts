@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { UserProfile } from '../models/models';
+import { TokenService } from '../services/token-service';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +13,13 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Model-Fenicia';
+  user: UserProfile | null = null;
+
+  constructor(private authService: TokenService) {}
+
+  ngOnInit(): void {
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
 }
