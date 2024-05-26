@@ -33,4 +33,31 @@
             (requestCancelSubscription)="cancelCurrentSubscription($event)"></app-subscription>
         </div>
     </section>
+
+    <section>
+        <h3>Payment History</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>UserID</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let payment of payments">
+                        <td>{{ payment.id }}</td>
+                        <td>{{ payment.user_id }}</td>
+                        <td>{{ payment.description }}</td>
+                        <td>{{ payment.amount }}</td>
+                        <td>{{ payment.status }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
 </main>

@@ -54,8 +54,10 @@ export interface SubscriptionRequest{
 }
   
 export interface PaymentInfo {
-    date: string;
-    amount: number;
-    status: string;
+    ID: number; 
+	User_ID: string;
+	Amount: number;
+	Description: string;
+	Status: string;
 }
   

@@ -30,7 +30,7 @@ export class UserDashboardComponent implements OnInit {
   movieList: MovieInfo[] = [];
   currentSubscription: SubscriptionInfo | null = null;
   availableSubscriptions: SubscriptionInfo[] = [];
-  payments: PaymentInfo[] = [];
+  payments: any[] = [];
 
   constructor(
     private movieServices: MovieServices,
@@ -51,7 +51,7 @@ export class UserDashboardComponent implements OnInit {
     this.loadMostViewed(6);
     this.loadCurrentSubscription();
     this.availableSubscriptions = this.subscriptionService.getAvailableSubscriptions();
-    //this.loadPaymentHistory();
+    this.loadPaymentHistory();
   }
 
 
@@ -79,11 +79,14 @@ export class UserDashboardComponent implements OnInit {
   }
 
   private async loadPaymentHistory() {
-    try {
-      this.payments = await this.paymentService.getPaymentHistory();
-    } catch (error) {
+    await this.paymentService.getPaymentHistory(this.userInfo.ID)
+    .then((response) => {
+      console.log(response);
+      this.payments = response;
+    }).catch((error) => {
+      this.payments = [];
       console.log(error);
-    }
+    });
   }
 
   private async loadUserInfo() {
@@ -115,26 +118,63 @@ export class UserDashboardComponent implements OnInit {
   }
   
   async getNewSubscription(subscription: SubscriptionInfo) {
-    var subRequest: SubscriptionRequest = {
-      ID: 0,
-      User_ID: this.userInfo.ID,
-      Plan: subscription.plan,
-      Price: subscription.price,
-      Description: subscription.description,
-      Status: ""
+    // Verificar si ya hay una suscripción activa
+    if (this.currentSubscription) {
+        alert("Ya tienes una suscripción activa. No se puede agregar una nueva suscripción.");
+        return;
     }
+
+    // Continuar con el proceso de pago y suscripción
+    var payRequest: PaymentInfo = {
+        ID: 0,
+        User_ID: this.userInfo.ID,
+        Amount: subscription.price,
+        Description: "Subscription Payment: " + subscription.plan,
+        Status: ""
+    }
+
+    if (!confirm(`¿Desea procesar el pago por el plan ${subscription.plan}, por un valor de ${subscription.price}?`)) {
+        alert("Error al adquirir la suscripción");
+        return;
+    }
+
+    await this.paymentService.processPayment(payRequest)
+        .then((response) => {
+            alert("Pago exitoso: " + response.id + " - Asignando suscripción...");
+        }).catch((error) => {
+            alert("Pago fallido. Intente nuevamente.")
+            console.log(error);
+            return;
+        });
+
+    await this.loadPaymentHistory();
+
+    var subRequest: SubscriptionRequest = {
+        ID: 0,
+        User_ID: this.userInfo.ID,
+        Plan: subscription.plan,
+        Price: subscription.price,
+        Description: subscription.description,
+        Status: ""
+    }
+
     await this.subscriptionService.addSubscription(subRequest).then((response) => {
-      subscription.isInfoOnly=false;
-      var sub: SubscriptionInfo = {
-        plan: response.plan,
-        description: response.description,
-        price: response.price,
-        isInfoOnly: false
-      }
-      response.isInfoOnly=false;
-      this.updateSubscriptionList(response);
-    }).catch((error) => {console.log(error)});
-  }
+        subscription.isInfoOnly = false;
+        var sub: SubscriptionInfo = {
+            plan: response.plan,
+            description: response.description,
+            price: response.price,
+            isInfoOnly: false
+        }
+        response.isInfoOnly = false;
+        this.updateSubscriptionList(response);
+        alert("Suscripción añadida con éxito")
+    }).catch((error) => {
+        console.log(error)
+        alert("Error al añadir la suscripción, intente nuevamente.")
+    });
+}
+
 
   async cancelCurrentSubscription(subscription: SubscriptionInfo) {
     
